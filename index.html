@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme-Cringy Masala</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000428, #004e92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ffcc00, transparent);
+            border-radius: 50%;
+            animation: explode 2s infinite ease-out;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(8);
+                opacity: 0;
+            }
+        }
+
+        .glitter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #ffffff, transparent) repeat;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .celestial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .celestial .planet {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff6347, #8b0000);
+            border-radius: 50%;
+            animation: orbit 10s linear infinite;
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(200px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(200px) rotate(-360deg);
+            }
+        }
+
+        .content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            display: none;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px white;
+        }
+
+        .message {
+            font-size: 2rem;
+            font-weight: bold;
+            animation: fadeIn 3s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.7;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .open-btn {
+            padding: 20px 40px;
+            background: #ffcc00;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            z-index: 10;
+            position: relative;
+            box-shadow: 0 0 20px #ffcc00;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px #ffcc00;
+            }
+            50% {
+                box-shadow: 0 0 40px #ffcc00;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    <div class="glitter"></div>
+    <div class="celestial" id="celestial">
+        <div class="planet" style="top: 50%; left: 50%;"></div>
+        <div class="planet" style="top: 30%; left: 40%; animation-duration: 15s;"></div>
+        <div class="planet" style="top: 70%; left: 60%; animation-duration: 20s;"></div>
+    </div>
+
+    <button class="open-btn" id="open-btn" onclick="revealMessage()">Zara Zara Touch Me Touch Me Touch Me</button>
+
+    <div class="content" id="content">
+        <img class="photo" src="your-photo.jpg" alt="Recipient Photo">
+        <div class="message">Chuha Nikla Bil se<br>Happy New Year Dil se!</div>
+    </div>
+
+    <audio id="bg-music" src="your-song-file.mp3"></audio>
+
+    <script>
+        function startFireworks() {
+            const fireworks = document.getElementById('fireworks');
+
+            setInterval(() => {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                fireworks.appendChild(firework);
+
+                setTimeout(() => firework.remove(), 2000);
+            }, 200);
+        }
+
+        function revealMessage() {
+            const content = document.getElementById('content');
+            const music = document.getElementById('bg-music');
+            const openBtn = document.getElementById('open-btn');
+
+            content.style.display = 'block';
+            openBtn.style.display = 'none';
+            music.play();
+            startFireworks();
+        }
+
+        startFireworks();
+    </script>
+</body>
+</html>
